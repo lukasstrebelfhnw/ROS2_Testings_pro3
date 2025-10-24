@@ -1,0 +1,16 @@
+<package format="3">
+  <name>ugv_safety</name>
+  <version>0.0.1</version>
+  <description>ugv_safety package</description>
+  <maintainer email="lukas@example.com">lukas</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>ament_python</buildtool_depend>
+  <depend>rclpy</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>ugv_msgs</depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+</package>

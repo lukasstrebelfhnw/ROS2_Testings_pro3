@@ -1,0 +1,50 @@
+/base_link
+├─ sensors/
+│  ├─ lidar_node                 → /scan (sensor_msgs/LaserScan)
+│  ├─ camera_node                → /image_raw (sensor_msgs/Image), /camera_info
+│  ├─ imu_node                   → /imu (sensor_msgs/Imu)
+│  ├─ wheel_odom_node            → /wheel_odom (nav_msgs/Odometry)
+│  ├─ nfc_reader_node            → /nfc/tag, /nfc/ampel_state (std_msgs/String|UInt8)   [Ampel/Schilder/Slots]
+│  └─ leitsystem_interface_node  → /leitsys/state (std_msgs/UInt8)                     [Grün/Gelb/Rot TTL]
+│
+├─ localization/
+│  └─ ekf_localization_node      → /odom → /odom_local (nav_msgs/Odometry)
+│
+├─ mapping/
+│  ├─ map_server                 → /map (nav_msgs/OccupancyGrid or nav2_msgs/Costmap)
+│  └─ localization_map_matcher   → /pose (geometry_msgs/PoseWithCovarianceStamped)
+│
+├─ perception/
+│  ├─ lane_detector_node         → /lane_markings (custom_msgs/Lanes)
+│  ├─ obstacle_detector_node     → /obstacles (vision_msgs/Detection2DArray or custom)
+│  ├─ surface_condition_node     → /surface/friction_hint (std_msgs/Float32)           [„Eis“-Zone]
+│  └─ parking_slot_detector_node → /parking/slots (custom_msgs/ParkingSlots)           [NFC + Bild/LiDAR]
+│
+├─ planning/
+│  ├─ behavior_manager_node      → /behavior/cmd (custom_msgs/Behavior)                [Moduswahl je Task]
+│  ├─ mission_manager_node       → /mission/goal (geometry_msgs/PoseStamped)           [Runden, Start/Ziel]
+│  ├─ global_planner_node        → /plan (nav_msgs/Path)
+│  └─ local_planner_node         → /cmd_vel (geometry_msgs/Twist) or /ackermann_cmd
+│
+├─ control/
+│  ├─ vehicle_interface_node     → /actuators (std_msgs/…) → HW (ESC/Lenkung)
+│  └─ speed_limiter_node         → /cmd_vel_limited (geometry_msgs/Twist)              [Leitsystem gelb=0.5 m/s]
+│
+├─ v2x/
+│  └─ ampel_state_fuser_node     → /traffic_light/state (std_msgs/UInt8)               [NFC + Vision-Fallback]
+│
+├─ safety/
+│  ├─ emergency_brake_node       → /emerg_stop (std_msgs/Bool)                         [Leitsystem rot | front-stop]
+│  └─ collision_monitor_node     → /safety/too_close (std_msgs/Bool)
+│
+├─ strategy/
+│  ├─ race_strategy_node         → /mission/goal updates                               [Rundenzeiten, Box]
+│  └─ parking_strategy_node      → /parking/goal                                       [Slotwahl/Andocken]
+│
+├─ infra/
+│  ├─ diagnostics_aggregator     → /diagnostics
+│  ├─ recorder_node              → rosbag2
+│  └─ lifecycle_manager
+│
+└─ sim/
+   └─ task_orchestrator_node     → /task (std_msgs/String)                             [Quali 1–4, Race]

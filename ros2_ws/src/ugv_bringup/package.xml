@@ -1,0 +1,14 @@
+<package format="3">
+  <name>ugv_bringup</name>
+  <version>0.0.1</version>
+  <description>Bringup and launch files for UGV</description>
+  <maintainer email="lukas@example.com">lukas</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <depend>ugv_v2x</depend>
+  <depend>ugv_control</depend>
+  <depend>ugv_safety</depend>
+  <depend>ugv_planning</depend>
+</package>

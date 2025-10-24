@@ -1,0 +1,13 @@
+ugv_control:
+  ros__parameters:
+    max_v_green: 1.5
+    max_v_yellow: 0.5
+
+ugv_safety:
+  ros__parameters:
+    min_distance: 0.6
+
+ugv_v2x:
+  ros__parameters:
+    ttl_green: false
+    ttl_yellow: false

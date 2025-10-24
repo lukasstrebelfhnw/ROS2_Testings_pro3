@@ -1,0 +1,3 @@
+# Driving/Task behavior state
+# 0=IDLE,1=CRUISE,2=PARKING,3=OBSTACLE_AVOID,4=FOLLOW_TRAFFIC,5=EMERGENCY_STOP
+uint8 state
